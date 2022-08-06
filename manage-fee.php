@@ -6,10 +6,10 @@ check_login();
 
 if(isset($_GET['del']))
 {
-	$no=intval($_GET['del']);
-	$adn="delete from expenses where no=?";
+	$id=intval($_GET['del']);
+	$adn="delete from fee where id=?";
 		$stmt= $mysqli->prepare($adn);
-		$stmt->bind_param('i',$no);
+		$stmt->bind_param('i',$id);
         $stmt->execute();
         $stmt->close();	   
         echo "<script>alert('Data Deleted');</script>" ;
@@ -25,7 +25,7 @@ if(isset($_GET['del']))
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	<title>Manage Rooms</title>
+	<title>Manage FEE</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
@@ -45,9 +45,9 @@ if(isset($_GET['del']))
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title" style="margin-top: 4%">Manage EXPENSES</h2>
+						<h2 class="page-title" style="margin-top: 4%">Manage FEE</h2>
 						<div class="panel panel-default">
-							<div class="panel-heading">All EXPENSES Details</div>
+							<div class="panel-heading">All FEE Details</div>
 							
 								
 <?php	
@@ -57,13 +57,13 @@ if(isset($_GET['y']))
 {
 	
 	$sql='SELECT *
-	FROM expenses';
+	FROM fee';
 	$result = $mysqli->query($sql);
-	$row=$result->fetch_assoc();
+	
 	$date=array();
 	
 	while ($row=$result->fetch_assoc()) { 
-		$year=date("y" , strtotime($row['date']));
+		$year=date("y" , strtotime($row['dated']));
 		array_push($date,$year);	
 		?>	
 	<?php
@@ -72,7 +72,7 @@ if(isset($_GET['y']))
 	 $max=max($date);
 	
 	 for($i=$max;$min<=$i;$i--) 
-	 {?> <h3><a href="manage-expenses.php?year=<?php echo $i ?>&m=true"><?php echo $i?></a>  </h3>
+	 {?> <h3><a href="manage-fee.php?year=<?php echo $i ?>&m=true"><?php echo $i?></a>  </h3>
 	 <?php
 	 }
 }
@@ -85,24 +85,27 @@ if(isset($_GET['i']))
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 	<thead>
 									   <tr>
-										   
-									   
-										   <th>Sr.no</th>
-										   <th>Amount</th>
-										   <th>Purpose </th>
+                                       <th>Sr.no</th>
+										   <th>studentname</th>
+										   <th>roomcharges </th>
 
-										   <th>Posting Date  </th>
+										   <th>foodcharges  </th>
+										   <th>msic_charges</th>
+                                           <th>date</th>
 										   <th>Action</th>
+										   
 									   </tr>
 								   </thead>
 								   <tfoot>
 									   <tr>
 										   
-										   <th>Sr.no</th>
-										   <th>Amount</th>
-									   
-										   <th>Purpose </th>
-										   <th>Posting Date  </th>
+                                       <th>Sr.no</th>
+										   <th>studentname</th>
+										   <th>roomcharges </th>
+
+										   <th>foodcharges  </th>
+										   <th>msic_charges</th>
+                                           <th>date</th>
 										   <th>Action</th>
 									   </tr>
 								   </tfoot>
@@ -118,7 +121,7 @@ if(isset($_GET['i']))
 	// $sql="SELECT *
 	// FROM expenses WHERE date BETWEEN '$ystart' AND '$yend'";
 	$sql="SELECT *
-	FROM expenses WHERE date BETWEEN '" . $ystart . "' AND '" . $yend . "' ORDER by no DESC";
+	FROM fee WHERE dated BETWEEN '" . $ystart . "' AND '" . $yend . "' ORDER by id DESC";
 	
 	$result = $mysqli->query($sql);
 $cnt=1;
@@ -127,11 +130,14 @@ while($row=$result->fetch_object())
 	  	?>
 <tr><td><?php echo $cnt;;?></td>
 
-<td><?php echo $row->amount;?></td>
-<td><?php echo $row->purpose;?></td>
-<td><?php echo $row->date;?></td>
-<td><a href="edit-expense.php?no=<?php echo $row->no;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-<a href="manage-expenses.php?del=<?php echo $row->no;?>" onclick="return confirm("Do you want to delete");"><i class="fa fa-close"></i></a></td>
+
+<td><?php echo $row->studentname;?></td>
+<td><?php echo $row->roomcharges;?></td>
+<td><?php echo $row->foodcharges;?></td>
+<td><?php echo $row->msic_charges;?></td>
+<td><?php echo $row->dated;?></td>
+<td><a href="edit-fee.php?id=<?php echo $row->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+<a href="manage-fee.php?del=<?php echo $row->id;?>" onclick="return confirm("Do you want to delete");"><i class="fa fa-close"></i></a></td>
 										</tr>
 										
 									<?php
@@ -148,7 +154,7 @@ $yend=   date("Y-m-d h:i:sa",mktime(00,59,59,12,31,$year));
 // $sql="SELECT *
 // FROM expenses WHERE date BETWEEN '$ystart' AND '$yend'";
 $sql="SELECT *
-FROM expenses WHERE date BETWEEN '" . $ystart . "' AND '" . $yend . "' ORDER by no DESC";
+FROM fee WHERE dated BETWEEN '" . $ystart . "' AND '" . $yend . "' ORDER by id DESC";
 
 $result = $mysqli->query($sql);
 //$row=$result->fetch_all();
@@ -159,7 +165,7 @@ $date=array();
 while ($row=$result->fetch_assoc()) { 
 	
 	
-    $month=date("m" , strtotime($row['date']));
+    $month=date("m" , strtotime($row['dated']));
     
     array_push($date,$month);
     
@@ -173,7 +179,7 @@ while ($row=$result->fetch_assoc()) {
  $max=max($date);
  
  for($i=$max;$min<=$i;$i--) 
- {?> <h3><a href="manage-expenses.php?year=<?php echo $year; ?>&month=<?php echo $i; ?>&i=true"><?php $dateObj=DateTime::createFromFormat('!m',$i); $monthName= $dateObj->format('F'); echo $i, $monthName; ?></a>  </h3>
+ {?> <h3><a href="manage-fee.php?year=<?php echo $year; ?>&month=<?php echo $i; ?>&i=true"><?php $dateObj=DateTime::createFromFormat('!m',$i); $monthName= $dateObj->format('F'); echo $i, $monthName; ?></a>  </h3>
  <?php
  }
 }

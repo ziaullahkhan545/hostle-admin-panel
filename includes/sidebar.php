@@ -18,7 +18,13 @@
 		<li><a href="#"><i class="fa fa-money"></i>Expenses</a>
 			<ul>
 				<li><a href="create-expense.php">Add Expenses</a></li>
-				<li><a href="manage-expenses.php">Manage Expenses</a></li>
+				<li><a href="manage-expenses.php?y=true">Manage Expenses</a></li>
+			</ul>
+		</li>
+		<li><a href="#"><i class="fa fa-money"></i>FEE</a>
+			<ul>
+				<li><a href="create-fee.php">Add FEE</a></li>
+				<li><a href="manage-fee.php?y=true">Manage FEE</a></li>
 			</ul>
 		</li>
 		<li><a href="registration.php"><i class="fa fa-user"></i>Student Registration</a></li>

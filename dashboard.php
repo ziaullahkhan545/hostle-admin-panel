@@ -154,7 +154,19 @@ check_login();
 													<div class="stat-panel-title text-uppercase"> monthly expenses </div>
 												</div>
 											</div>
-											<a href="manage-rooms.php" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-expenses.php?y=true" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="panel panel-default">
+											<div class="panel-body bk-warning text-light">
+												<div class="stat-panel text-center">
+													
+													<div class="stat-panel-number h1 ">FEE</div>
+													<div class="stat-panel-title text-uppercase">  </div>
+												</div>
+											</div>
+											<a href="manage-fee.php?y=true" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-4">
