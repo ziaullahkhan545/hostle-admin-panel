@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 07:40 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Aug 06, 2022 at 07:14 PM
+-- Server version: 5.7.17
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(300) NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updation_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -54,8 +54,185 @@ CREATE TABLE `adminlog` (
   `id` int(11) NOT NULL,
   `adminid` int(11) NOT NULL,
   `ip` varbinary(16) NOT NULL,
-  `logintime` timestamp NOT NULL DEFAULT current_timestamp()
+  `logintime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `id` int(4) NOT NULL,
+  `state_id` int(4) NOT NULL,
+  `city` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`id`, `state_id`, `city`) VALUES
+(1, 1, 'Muzaffarabad'),
+(2, 1, 'Hattian Bala'),
+(3, 1, 'Neelum'),
+(4, 1, 'Mirpur'),
+(5, 1, 'Bhimber'),
+(6, 1, 'Kotli'),
+(7, 1, 'Poonch'),
+(8, 1, 'Bagh'),
+(9, 1, 'Haveli'),
+(10, 1, 'Sudhnati'),
+(11, 2, 'Awaran'),
+(12, 2, 'Barkhan'),
+(13, 2, 'Chagai'),
+(14, 2, 'Chaman'),
+(15, 2, 'Dera Bugti'),
+(16, 2, 'Duki'),
+(17, 2, 'Gwadar'),
+(18, 2, 'Harnai'),
+(19, 2, 'Jafarabad'),
+(20, 2, 'Jhal Magsi'),
+(21, 2, 'Kachhi'),
+(22, 2, 'Kalat'),
+(23, 2, 'Kech'),
+(24, 2, 'Kharan'),
+(25, 2, 'Khuzdar'),
+(26, 2, 'Kohlu'),
+(27, 2, 'Lasbela'),
+(28, 2, 'Loralai'),
+(29, 2, 'Mastung'),
+(30, 2, 'Musakhel'),
+(31, 2, 'Nasirabad'),
+(32, 2, 'Nushki'),
+(33, 2, 'Panjgur'),
+(34, 2, 'Pishin'),
+(35, 2, 'Quetta'),
+(36, 2, 'Qila Abdullah'),
+(37, 2, 'Qilla Saifullah'),
+(38, 2, 'Sherani'),
+(39, 2, 'Sibi'),
+(40, 2, 'Sohbatpur'),
+(41, 2, 'Shaheed Sikandarabad'),
+(42, 2, 'Washuk'),
+(43, 2, 'Zhob'),
+(44, 2, 'Ziarat'),
+(45, 3, 'Ghanche'),
+(46, 3, 'Skardu'),
+(47, 3, 'Astore'),
+(48, 3, 'Diamer'),
+(49, 3, 'Ghizer'),
+(50, 3, 'Gilgit'),
+(51, 3, 'Hunza'),
+(52, 3, 'Kharmang'),
+(53, 3, 'Shigar'),
+(54, 3, 'Nagar'),
+(56, 3, 'Tangir'),
+(57, 3, 'Darel'),
+(58, 3, 'Roundu'),
+(59, 4, 'Islamabad'),
+(60, 5, 'Abbottabad'),
+(61, 5, 'Bajaur'),
+(62, 5, 'Bannu'),
+(63, 5, 'Battagram'),
+(64, 5, 'Buner'),
+(65, 5, 'Charsadda'),
+(66, 5, 'Dera Ismail Khan'),
+(67, 5, 'Hangu'),
+(68, 5, 'Haripur'),
+(69, 5, 'Karak'),
+(70, 5, 'Khyber'),
+(71, 5, 'Kohat'),
+(72, 5, 'Kurram'),
+(73, 5, 'Kolai Palas'),
+(74, 5, 'Lakki Marwat'),
+(75, 5, 'Lower Dir'),
+(76, 5, 'Lower Kohistan'),
+(77, 5, 'Lower Chitral'),
+(78, 5, 'Malakand'),
+(79, 5, 'Mansehra'),
+(80, 5, 'Mardan'),
+(81, 5, 'Mohmand'),
+(82, 5, 'North Waziristan'),
+(83, 5, 'Nowshera'),
+(84, 5, 'Orakzai'),
+(85, 5, 'Peshawar'),
+(86, 5, 'Shangla'),
+(87, 5, 'South Waziristan'),
+(88, 5, 'Swabi'),
+(89, 5, 'Swat'),
+(90, 5, 'Tank'),
+(91, 5, 'Torghar'),
+(92, 5, 'Upper Dir'),
+(93, 5, 'Upper Kohistan'),
+(94, 5, 'Upper Chitral'),
+(95, 6, 'Attock'),
+(96, 6, 'Bahawalnagar'),
+(97, 6, 'Bahawalpur'),
+(98, 6, 'Bhakkar'),
+(99, 6, 'Chakwal'),
+(100, 6, 'Chiniot'),
+(101, 6, 'Dera Ghazi Khan'),
+(102, 6, 'Faisalabad'),
+(103, 6, 'Gujranwala'),
+(104, 6, 'Gujrat'),
+(105, 6, 'Hafizabad'),
+(106, 6, 'Jhang'),
+(107, 6, 'Jhelum'),
+(108, 6, 'Kasur'),
+(109, 6, 'Khanewal'),
+(110, 6, 'Khushab'),
+(111, 6, 'Lahore'),
+(112, 6, 'Layyah'),
+(113, 6, 'Lodhran'),
+(114, 6, 'Mandi Bahauddin'),
+(115, 6, 'Mianwali'),
+(116, 6, 'Multan'),
+(117, 6, 'Muzaffargarh'),
+(118, 6, 'Narowal'),
+(119, 6, 'Nankana Sahib'),
+(120, 6, 'Okara'),
+(121, 6, 'Pakpattan'),
+(122, 6, 'Rahim Yar Khan'),
+(123, 6, 'Rajanpur'),
+(124, 6, 'Rawalpindi'),
+(125, 6, 'Sahiwal'),
+(126, 6, 'Sargodha'),
+(127, 6, 'Sheikhupura'),
+(128, 6, 'Sialkot'),
+(129, 6, 'Toba Tek Singh'),
+(130, 6, 'Vehari'),
+(131, 7, 'Badin'),
+(132, 7, 'Dadu'),
+(133, 7, 'Ghotki'),
+(134, 7, 'Hyderabad'),
+(135, 7, 'Jacobabad'),
+(136, 7, 'Jamshoro'),
+(137, 7, 'Karachi Central'),
+(138, 7, 'Karachi East'),
+(139, 7, 'Karachi South'),
+(140, 7, 'Karachi West'),
+(141, 7, 'Kashmore'),
+(142, 7, 'Khairpur'),
+(143, 7, 'Korangi'),
+(144, 7, 'Keamari'),
+(145, 7, 'Larkana'),
+(146, 7, 'Malir'),
+(147, 7, 'Matiari'),
+(148, 7, 'Mirpur Khas'),
+(149, 7, 'Naushahro Feroze'),
+(150, 7, 'Qambar Shahdadkot'),
+(151, 7, 'Sanghar'),
+(152, 7, 'Shaheed Benazirabad'),
+(153, 7, 'Shikarpur'),
+(154, 7, 'Sujawal'),
+(155, 7, 'Sukkur'),
+(156, 7, 'Tando Allahyar'),
+(157, 7, 'Tando Muhammad Khan'),
+(158, 7, 'Tharparkar'),
+(159, 7, 'Thatta'),
+(160, 7, 'Umerkot');
 
 -- --------------------------------------------------------
 
@@ -68,7 +245,7 @@ CREATE TABLE `courses` (
   `course_code` varchar(255) DEFAULT NULL,
   `course_sn` varchar(255) DEFAULT NULL,
   `course_fn` varchar(255) DEFAULT NULL,
-  `posting_date` timestamp NULL DEFAULT current_timestamp()
+  `posting_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -93,7 +270,7 @@ INSERT INTO `courses` (`id`, `course_code`, `course_sn`, `course_fn`, `posting_d
 
 CREATE TABLE `expenses` (
   `no` int(11) NOT NULL,
-  `date` varchar(20) NOT NULL,
+  `date` datetime(6) DEFAULT NULL,
   `amount` varchar(50) NOT NULL,
   `purpose` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -103,10 +280,36 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`no`, `date`, `amount`, `purpose`) VALUES
-(1, '2022-30-2', '4300', 'kitchen'),
-(2, '2022-07-15', '300', 'cleaning'),
-(3, '2022-07-16', '50000', 'rent'),
-(4, '2022-07-17', '5000', 'kitchen expenses');
+(5, '2022-07-12 00:00:00.000000', '1000', 'laundry'),
+(6, '2022-07-27 00:00:00.000000', '3000', 'kitchen'),
+(7, '2022-07-19 00:00:00.000000', '3000', 'foos'),
+(8, '2021-01-06 00:00:00.000000', '3044', 'ddfdklsfd'),
+(9, '2023-02-09 00:00:00.000000', '100', 'dklfjsdfk'),
+(10, '2020-07-12 00:00:00.000000', '1005', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fee`
+--
+
+CREATE TABLE `fee` (
+  `id` int(10) NOT NULL,
+  `regno` int(5) NOT NULL,
+  `studentname` varchar(25) NOT NULL,
+  `roomcharges` int(10) NOT NULL,
+  `foodcharges` int(10) NOT NULL,
+  `msic_charges` int(10) NOT NULL,
+  `total` int(15) NOT NULL,
+  `dated` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fee`
+--
+
+INSERT INTO `fee` (`id`, `regno`, `studentname`, `roomcharges`, `foodcharges`, `msic_charges`, `total`, `dated`) VALUES
+(1, 342352, 'zia', 3000, 500, 100, 3600, '2022-08-06');
 
 -- --------------------------------------------------------
 
@@ -142,7 +345,7 @@ CREATE TABLE `registration` (
   `pmntCity` varchar(500) DEFAULT NULL,
   `pmnatetState` varchar(500) DEFAULT NULL,
   `pmntPincode` int(11) DEFAULT NULL,
-  `postingDate` timestamp NULL DEFAULT current_timestamp(),
+  `postingDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updationDate` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -165,7 +368,7 @@ CREATE TABLE `rooms` (
   `seater` int(11) DEFAULT NULL,
   `room_no` int(11) DEFAULT NULL,
   `fees` int(11) DEFAULT NULL,
-  `posting_date` timestamp NULL DEFAULT current_timestamp()
+  `posting_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -193,42 +396,13 @@ CREATE TABLE `states` (
 --
 
 INSERT INTO `states` (`id`, `State`) VALUES
-(1, 'Andaman and Nicobar Island (UT)'),
-(2, 'Andhra Pradesh'),
-(3, 'Arunachal Pradesh'),
-(4, 'Assam'),
-(5, 'Bihar'),
-(6, 'Chandigarh (UT)'),
-(7, 'Chhattisgarh'),
-(8, 'Dadra and Nagar Haveli (UT)'),
-(9, 'Daman and Diu (UT)'),
-(10, 'Delhi (NCT)'),
-(11, 'Goa'),
-(12, 'Gujarat'),
-(13, 'Haryana'),
-(14, 'Himachal Pradesh'),
-(15, 'Jammu and Kashmir'),
-(16, 'Jharkhand'),
-(17, 'Karnataka'),
-(18, 'Kerala'),
-(19, 'Lakshadweep (UT)'),
-(20, 'Madhya Pradesh'),
-(21, 'Maharashtra'),
-(22, 'Manipur'),
-(23, 'Meghalaya'),
-(24, 'Mizoram'),
-(25, 'Nagaland'),
-(26, 'Odisha'),
-(27, 'Puducherry (UT)'),
-(28, 'Punjab'),
-(29, 'Rajastha'),
-(30, 'Sikkim'),
-(31, 'Tamil Nadu'),
-(32, 'Telangana'),
-(33, 'Tripura'),
-(34, 'Uttarakhand'),
-(35, 'Uttar Pradesh'),
-(36, 'West Bengal');
+(7, 'Sindh'),
+(6, 'Punjab'),
+(3, 'Gilgit Baltistan'),
+(5, 'Kyber-Pukhtoonkhwa'),
+(4, 'ICT-islamabad'),
+(2, 'Baloachistan'),
+(1, 'AJK');
 
 -- --------------------------------------------------------
 
@@ -243,7 +417,7 @@ CREATE TABLE `userlog` (
   `userIp` varbinary(16) NOT NULL,
   `city` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `loginTime` timestamp NOT NULL DEFAULT current_timestamp()
+  `loginTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -271,7 +445,7 @@ CREATE TABLE `userregistration` (
   `contactNo` bigint(20) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `regDate` timestamp NULL DEFAULT current_timestamp(),
+  `regDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updationDate` varchar(45) DEFAULT NULL,
   `passUdateDate` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -307,6 +481,12 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `expenses`
   ADD PRIMARY KEY (`no`);
+
+--
+-- Indexes for table `fee`
+--
+ALTER TABLE `fee`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `registration`
@@ -349,49 +529,46 @@ ALTER TABLE `userregistration`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `fee`
+--
+ALTER TABLE `fee`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `userregistration`
 --
 ALTER TABLE `userregistration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
